@@ -13,7 +13,13 @@ export const unipileWebhookOperations: INodeProperties[] = [
 				value: 'webhookCreate',
 				action: 'Create a webhook',
 				description: 'POST /webhooks',
-				routing: { request: { method: 'POST', url: '/api/v1/webhooks' } },
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/api/v1/webhooks',
+						body: '={{ JSON.parse($parameter["body"]) }}',
+					},
+				},
 			},
 			{
 				name: 'Delete Webhook',

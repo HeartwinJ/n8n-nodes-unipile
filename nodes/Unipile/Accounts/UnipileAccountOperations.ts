@@ -13,7 +13,13 @@ export const unipileAccountsOperations: INodeProperties[] = [
 				value: 'accountCreate',
 				action: 'Connect an account',
 				description: 'POST /accounts',
-				routing: { request: { method: 'POST', url: '/api/v1/accounts' } },
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/api/v1/accounts',
+						body: '={{ JSON.parse($parameter["body"]) }}',
+					},
+				},
 			},
 			{
 				name: 'Delete Account',
@@ -44,7 +50,13 @@ export const unipileAccountsOperations: INodeProperties[] = [
 				value: 'accountHostedLink',
 				action: 'Connect account via hosted auth',
 				description: 'POST /hosted/accounts/link',
-				routing: { request: { method: 'POST', url: '/api/v1/hosted/accounts/link' } },
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/api/v1/hosted/accounts/link',
+						body: '={{ JSON.parse($parameter["body"]) }}',
+					},
+				},
 			},
 			{
 				name: 'List Accounts',
@@ -62,6 +74,7 @@ export const unipileAccountsOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/accounts/{{$parameter["accountId"]}}',
+						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
