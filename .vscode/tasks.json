@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build-node-unipile",
+			"type": "shell",
+			"command": "npm run build",
+			"args": []
+		},
+		{
+			"label": "link-node-unipile",
+			"type": "shell",
+			"command": "npm link",
+			"args": []
+		}
+	]
+}
