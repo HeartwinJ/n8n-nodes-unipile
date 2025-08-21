@@ -9,6 +9,12 @@ export const calendarListFields: INodeProperties[] = [
 		required: true,
 		description: 'The ID of the account to use',
 		routing: { send: { type: 'query', property: 'account_id' } },
+		displayOptions: {
+			show: {
+				resource: ['calendar'],
+				operation: ['calendarList'],
+			},
+		},
 	},
 	{
 		displayName: 'Additional Fields',
