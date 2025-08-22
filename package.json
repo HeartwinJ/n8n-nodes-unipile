@@ -1,16 +1,13 @@
 {
 	"name": "n8n-nodes-unipile",
 	"version": "0.1.0",
-	"description": "n8n community node for Unipile API (accounts, chats, messages, users)",
+	"description": "n8n community node for Unipile API",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
 	"homepage": "https://github.com/HeartwinJ/n8n-nodes-unipile.git",
-	"author": {
-		"name": "Heartwin Haveluck",
-		"email": "heartwinhaveluck@gmail.com"
-	},
+	"author": "Heartwin Haveluck <heartwinhaveluck@gmail.com> (https://heartwinhaveluck.com)",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/HeartwinJ/n8n-nodes-unipile.git"
