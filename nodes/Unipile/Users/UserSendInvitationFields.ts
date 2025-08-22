@@ -7,6 +7,11 @@ export const userSendInvitationFields: INodeProperties[] = [
 		type: 'json',
 		default: '{}',
 		description: 'Raw JSON body to send an invitation',
-		displayOptions: { show: { resource: ['user'], operation: ['userSendInvitation'] } },
+		displayOptions: {
+			show: {
+				resource: ['user'],
+				operation: ['userSendInvitation'],
+			},
+		},
 	},
 ];
