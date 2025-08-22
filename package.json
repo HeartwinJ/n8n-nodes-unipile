@@ -7,7 +7,11 @@
 	],
 	"license": "MIT",
 	"homepage": "https://github.com/HeartwinJ/n8n-nodes-unipile.git",
-	"author": "Heartwin Haveluck <heartwinhaveluck@gmail.com> (https://heartwinhaveluck.com)",
+	"author": {
+		"name": "Heartwin Haveluck",
+		"email": "heartwinhaveluck@gmail.com",
+		"url": "https://heartwinhaveluck.com"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/HeartwinJ/n8n-nodes-unipile.git"
