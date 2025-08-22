@@ -2,6 +2,12 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "lint-node-unipile",
+			"type": "shell",
+			"command": "npm run lint",
+			"args": []
+		},
+		{
 			"label": "build-node-unipile",
 			"type": "shell",
 			"command": "npm run build",
