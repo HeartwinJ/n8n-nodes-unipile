@@ -10,14 +10,14 @@ export const chatListFields: INodeProperties[] = [
 		options: [
 			{
 				displayName: 'Account ID',
-				name: 'account_id',
+				name: 'accountId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_id' } },
 			},
 			{
 				displayName: 'Account Type',
-				name: 'account_type',
+				name: 'accountType',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_type' } },

@@ -10,7 +10,7 @@ export const messageListFields: INodeProperties[] = [
 		options: [
 			{
 				displayName: 'Account ID',
-				name: 'account_id',
+				name: 'accountId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_id' } },
@@ -48,7 +48,7 @@ export const messageListFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Sender ID',
-				name: 'sender_id',
+				name: 'senderId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'sender_id' } },

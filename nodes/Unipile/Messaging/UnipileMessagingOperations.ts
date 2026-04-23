@@ -150,7 +150,6 @@ export const unipileMessagingOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/chats/{{$parameter["chatId"]}}/messages',
-						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
@@ -160,11 +159,7 @@ export const unipileMessagingOperations: INodeProperties[] = [
 				action: 'Start a new chat',
 				description: 'POST /chats',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/chats',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/chats' },
 				},
 			},
 			{

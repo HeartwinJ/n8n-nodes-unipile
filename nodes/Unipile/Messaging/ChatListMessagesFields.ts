@@ -53,7 +53,7 @@ export const chatListMessagesFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Sender ID',
-				name: 'sender_id',
+				name: 'senderId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'sender_id' } },
