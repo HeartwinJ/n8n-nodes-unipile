@@ -1,5 +1,6 @@
 import type { INodeProperties } from 'n8n-workflow';
 import { accountIdField } from '../shared/AccountIdField';
+import { returnAllFields } from '../shared/pagination';
 
 export const calendarListEventsFields: INodeProperties[] = [
 	{
@@ -16,6 +17,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 		},
 	},
 	accountIdField({ resource: 'calendar', operation: 'calendarListEvents' }),
+	...returnAllFields({ resource: 'calendar', operation: 'calendarListEvents' }),
 	{
 		displayName: 'Additional Filters',
 		name: 'additionalFields',
@@ -52,7 +54,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 				name: 'cursor',
 				type: 'string',
 				default: '',
-				description: 'Pagination cursor',
+				description: 'Ignored when Return All is enabled',
 				routing: { send: { type: 'query', property: 'cursor' } },
 			},
 			{
@@ -94,15 +96,6 @@ export const calendarListEventsFields: INodeProperties[] = [
 				default: '',
 				description: 'Filter by iCal UID',
 				routing: { send: { type: 'query', property: 'ical_uid' } },
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				description: 'Max number of results to return',
-				typeOptions: { minValue: 1 },
-				routing: { send: { type: 'query', property: 'limit' } },
 			},
 			{
 				displayName: 'Location',
