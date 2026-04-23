@@ -1,18 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const emailListFoldersFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		description: 'The ID of the account to use',
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['email'],
-				operation: ['emailListFolders'],
-			},
-		},
-	},
+	accountIdField({
+		resource: 'email',
+		operation: 'emailListFolders',
+		description: 'The account to list folders for',
+	}),
 ];

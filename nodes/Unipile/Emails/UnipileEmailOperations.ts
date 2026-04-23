@@ -14,11 +14,7 @@ export const unipileEmailOperations: INodeProperties[] = [
 				action: 'Create a draft',
 				description: 'POST /drafts',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/drafts',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/drafts' },
 				},
 			},
 			{
@@ -80,11 +76,7 @@ export const unipileEmailOperations: INodeProperties[] = [
 				action: 'Send an email',
 				description: 'POST /emails',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/emails',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/emails' },
 				},
 			},
 			{
