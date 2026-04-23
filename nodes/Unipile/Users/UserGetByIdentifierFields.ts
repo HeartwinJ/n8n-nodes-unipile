@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const userGetByIdentifierFields: INodeProperties[] = [
 	{
@@ -14,29 +15,16 @@ export const userGetByIdentifierFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['user'],
-				operation: ['userGetByIdentifier'],
-			},
-		},
-	},
+	accountIdField({ resource: 'user', operation: 'userGetByIdentifier' }),
 	{
 		displayName: 'Additional Fields',
-		name: 'additionalFieldsReactions',
+		name: 'additionalFields',
 		type: 'collection',
 		placeholder: 'Add Field',
 		default: {},
 		options: [
 			{
-				displayName: 'Linkedin API',
+				displayName: 'LinkedIn API',
 				name: 'linkedinApi',
 				type: 'string',
 				default: '',
@@ -45,11 +33,11 @@ export const userGetByIdentifierFields: INodeProperties[] = [
 				routing: { send: { type: 'query', property: 'linkedin_api' } },
 			},
 			{
-				displayName: 'Linkedin Sections',
+				displayName: 'LinkedIn Sections',
 				name: 'linkedinSections',
 				type: 'string',
 				default: '',
-				description: 'The sections that should be synchronized on Linkedin calls',
+				description: 'The sections that should be synchronized on LinkedIn calls',
 				routing: { send: { type: 'query', property: 'linkedin_sections' } },
 			},
 			{

@@ -29,7 +29,7 @@ export const unipileUserOperations: INodeProperties[] = [
 					request: {
 						method: 'PATCH',
 						url: '/api/v1/users/me/edit',
-						body: '={{ JSON.parse($parameter["body"]) }}',
+						body: '={{ { ...JSON.parse($parameter["body"] || "{}"), account_id: $parameter["accountId"], type: $parameter["type"] } }}',
 					},
 				},
 			},
@@ -58,7 +58,6 @@ export const unipileUserOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/users/invite/received/{{$parameter["invitationId"]}}',
-						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
@@ -130,11 +129,7 @@ export const unipileUserOperations: INodeProperties[] = [
 				action: 'Send an invitation',
 				description: 'POST /users/invite',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/users/invite',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/users/invite' },
 				},
 			},
 		],
