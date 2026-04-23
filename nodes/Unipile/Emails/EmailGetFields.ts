@@ -15,14 +15,11 @@ export const emailGetFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		...accountIdField({
-			resource: 'email',
-			operation: 'emailGet',
-			required: false,
-			description: 'The ID of the account (required when using provider uid)',
-		}),
-	},
+	accountIdField({
+		resource: 'email',
+		operation: 'emailGet',
+		required: false,
+	}),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',

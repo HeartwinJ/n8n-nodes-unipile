@@ -21,12 +21,12 @@ export const webhookCreateFields: INodeProperties[] = [
 		required: true,
 		description: 'The kind of data to receive',
 		options: [
-			{ name: 'Messaging', value: 'messaging' },
 			{ name: 'Account Status', value: 'account_status' },
-			{ name: 'Users', value: 'users' },
+			{ name: 'Calendar Event', value: 'calendar_event' },
 			{ name: 'Email', value: 'email' },
 			{ name: 'Email Tracking', value: 'email_tracking' },
-			{ name: 'Calendar Event', value: 'calendar_event' },
+			{ name: 'Messaging', value: 'messaging' },
+			{ name: 'Users', value: 'users' },
 		],
 		routing: { send: { type: 'body', property: 'source' } },
 		displayOptions: {

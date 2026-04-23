@@ -8,7 +8,6 @@ interface BuildOptions {
 	required?: boolean;
 	sendMode?: AccountIdSendMode;
 	sendProperty?: string;
-	description?: string;
 }
 
 /**
@@ -23,16 +22,16 @@ export function accountIdField(opts: BuildOptions): INodeProperties {
 		required = true,
 		sendMode = 'query',
 		sendProperty = 'account_id',
-		description,
 	} = opts;
 
 	const base: INodeProperties = {
-		displayName: 'Account',
+		displayName: 'Account Name or ID',
 		name: 'accountId',
 		type: 'options',
 		default: '',
 		required,
-		description: description ?? 'The Unipile account to use',
+		description:
+			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 		typeOptions: { loadOptionsMethod: 'getAccounts' },
 		displayOptions: { show: { resource: [resource], operation: [operation] } },
 	};

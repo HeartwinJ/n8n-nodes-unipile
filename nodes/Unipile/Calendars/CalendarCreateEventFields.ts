@@ -95,7 +95,7 @@ export const calendarCreateEventFields: INodeProperties[] = [
 			{
 				displayName: 'Color',
 				name: 'color',
-				type: 'string',
+				type: 'color',
 				default: '',
 				routing: { send: { type: 'body', property: 'color' } },
 			},
@@ -127,7 +127,7 @@ export const calendarCreateEventFields: INodeProperties[] = [
 				name: 'transparency',
 				type: 'options',
 				default: 'opaque',
-				description: 'opaque blocks calendar time; transparent does not',
+				description: 'Opaque blocks calendar time; transparent does not',
 				options: [
 					{ name: 'Opaque', value: 'opaque' },
 					{ name: 'Transparent', value: 'transparent' },

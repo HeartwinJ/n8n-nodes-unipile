@@ -27,8 +27,8 @@ export const userHandleInvitationFields: INodeProperties[] = [
 		default: 'accept',
 		required: true,
 		options: [
-			{ name: 'Accept', value: 'accept' },
-			{ name: 'Decline', value: 'decline' },
+			{ name: 'Accept', value: 'accept', action: 'Accept the invitation' },
+			{ name: 'Decline', value: 'decline', action: 'Decline the invitation' },
 		],
 		routing: { send: { type: 'body', property: 'action' } },
 		displayOptions: {
@@ -51,6 +51,7 @@ export const userHandleInvitationFields: INodeProperties[] = [
 		displayName: 'Shared Secret',
 		name: 'sharedSecret',
 		type: 'string',
+		typeOptions: { password: true },
 		default: '',
 		required: true,
 		description:

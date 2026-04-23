@@ -15,12 +15,9 @@ export const emailDeleteFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		...accountIdField({
-			resource: 'email',
-			operation: 'emailDelete',
-			required: false,
-			description: 'The ID of the account (required when using provider uid)',
-		}),
-	},
+	accountIdField({
+		resource: 'email',
+		operation: 'emailDelete',
+		required: false,
+	}),
 ];
