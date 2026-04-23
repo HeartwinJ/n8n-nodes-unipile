@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinSolveCheckpointFields: INodeProperties[] = [
 	{
@@ -14,20 +15,11 @@ export const linkedinSolveCheckpointFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'body', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['linkedin'],
-				operation: ['linkedinGetJobApplicantResume'],
-			},
-		},
-	},
+	accountIdField({
+		resource: 'linkedin',
+		operation: 'linkedinSolveCheckpoint',
+		sendMode: 'body',
+	}),
 	{
 		displayName: 'Input',
 		name: 'input',
@@ -38,7 +30,7 @@ export const linkedinSolveCheckpointFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['linkedin'],
-				operation: ['linkedinGetJobApplicantResume'],
+				operation: ['linkedinSolveCheckpoint'],
 			},
 		},
 	},

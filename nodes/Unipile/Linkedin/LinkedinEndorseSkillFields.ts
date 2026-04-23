@@ -1,20 +1,12 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinEndorseSkillFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'body', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['linkedin'],
-				operation: ['linkedinEndorseSkill'],
-			},
-		},
-	},
+	accountIdField({
+		resource: 'linkedin',
+		operation: 'linkedinEndorseSkill',
+		sendMode: 'body',
+	}),
 	{
 		displayName: 'Profile ID',
 		name: 'profileId',
@@ -32,9 +24,10 @@ export const linkedinEndorseSkillFields: INodeProperties[] = [
 	{
 		displayName: 'Skill Endorsement ID',
 		name: 'skillEndorsementId',
-		type: 'number',
-		default: 0,
+		type: 'string',
+		default: '',
 		required: true,
+		description: 'The ID of the skill to endorse on the profile',
 		routing: { send: { type: 'body', property: 'skill_endorsement_id' } },
 		displayOptions: {
 			show: {

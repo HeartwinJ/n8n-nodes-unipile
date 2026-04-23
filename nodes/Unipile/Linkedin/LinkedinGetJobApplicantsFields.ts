@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinGetJobApplicantsFields: INodeProperties[] = [
 	{
@@ -14,20 +15,7 @@ export const linkedinGetJobApplicantsFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['linkedin'],
-				operation: ['linkedinGetJobApplicants'],
-			},
-		},
-	},
+	accountIdField({ resource: 'linkedin', operation: 'linkedinGetJobApplicants' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -54,9 +42,10 @@ export const linkedinGetJobApplicantsFields: INodeProperties[] = [
 			{
 				displayName: 'Limit',
 				name: 'limit',
-				type: 'string',
-				default: '',
-				description: 'The maximum number of applicants to return',
+				type: 'number',
+				default: 50,
+				description: 'Max number of results to return',
+				typeOptions: { minValue: 1 },
 				routing: { send: { type: 'query', property: 'limit' } },
 			},
 			{
@@ -72,7 +61,7 @@ export const linkedinGetJobApplicantsFields: INodeProperties[] = [
 				name: 'service',
 				type: 'string',
 				default: '',
-				description: 'The Linkedin service the applicant depends on',
+				description: 'The LinkedIn service the applicant depends on',
 				routing: { send: { type: 'query', property: 'service' } },
 			},
 		],

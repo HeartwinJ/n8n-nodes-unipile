@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinGetJobApplicantResumeFields: INodeProperties[] = [
 	{
@@ -14,20 +15,7 @@ export const linkedinGetJobApplicantResumeFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['linkedin'],
-				operation: ['linkedinGetJobApplicantResume'],
-			},
-		},
-	},
+	accountIdField({ resource: 'linkedin', operation: 'linkedinGetJobApplicantResume' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -40,7 +28,7 @@ export const linkedinGetJobApplicantResumeFields: INodeProperties[] = [
 				name: 'service',
 				type: 'string',
 				default: '',
-				description: 'The Linkedin service the applicant depends on',
+				description: 'The LinkedIn service the applicant depends on',
 				routing: { send: { type: 'query', property: 'service' } },
 			},
 		],

@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinGetHiringProjectByIdFields: INodeProperties[] = [
 	{
@@ -14,18 +15,5 @@ export const linkedinGetHiringProjectByIdFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['linkedin'],
-				operation: ['linkedinGetHiringProjectById'],
-			},
-		},
-	},
+	accountIdField({ resource: 'linkedin', operation: 'linkedinGetHiringProjectById' }),
 ];
