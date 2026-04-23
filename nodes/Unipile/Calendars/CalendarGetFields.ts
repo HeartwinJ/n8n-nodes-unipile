@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const calendarGetFields: INodeProperties[] = [
 	{
@@ -14,18 +15,5 @@ export const calendarGetFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['calendar'],
-				operation: ['calendarGet'],
-			},
-		},
-	},
+	accountIdField({ resource: 'calendar', operation: 'calendarGet' }),
 ];

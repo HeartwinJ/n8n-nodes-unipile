@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const calendarEditEventFields: INodeProperties[] = [
 	{
@@ -27,26 +28,13 @@ export const calendarEditEventFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['calendar'],
-				operation: ['calendarEditEvent'],
-			},
-		},
-	},
+	accountIdField({ resource: 'calendar', operation: 'calendarEditEvent' }),
 	{
 		displayName: 'Body (JSON)',
 		name: 'body',
 		type: 'json',
 		default: '{}',
-		description: 'Raw JSON body to send when editing an event',
+		description: 'Partial event object with fields to update',
 		displayOptions: {
 			show: {
 				resource: ['calendar'],

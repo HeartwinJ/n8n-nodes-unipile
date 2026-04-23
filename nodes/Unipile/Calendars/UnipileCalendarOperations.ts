@@ -17,7 +17,6 @@ export const unipileCalendarOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/calendars/{{$parameter["calendarId"]}}/events',
-						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
