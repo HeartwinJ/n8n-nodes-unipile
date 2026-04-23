@@ -1,20 +1,12 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const accountResendCheckpointFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'body', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['account'],
-				operation: ['accountResendCheckpoint'],
-			},
-		},
-	},
+	accountIdField({
+		resource: 'account',
+		operation: 'accountResendCheckpoint',
+		sendMode: 'body',
+	}),
 	{
 		displayName: 'Provider',
 		name: 'provider',
