@@ -61,7 +61,19 @@ export const unipileEmailOperations: INodeProperties[] = [
 				value: 'emailList',
 				action: 'List all emails',
 				description: 'GET /emails',
-				routing: { request: { method: 'GET', url: '/api/v1/emails' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/emails' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 			{
 				name: 'List Folders',
