@@ -63,7 +63,19 @@ export const unipileAccountsOperations: INodeProperties[] = [
 				value: 'accountList',
 				action: 'List all accounts',
 				description: 'GET /accounts',
-				routing: { request: { method: 'GET', url: '/api/v1/accounts' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/accounts' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 			{
 				name: 'Reconnect Account',
