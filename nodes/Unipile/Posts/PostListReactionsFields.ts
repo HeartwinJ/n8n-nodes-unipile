@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const postListReactionsFields: INodeProperties[] = [
 	{
@@ -14,21 +15,14 @@ export const postListReactionsFields: INodeProperties[] = [
 			},
 		},
 	},
+	accountIdField({ resource: 'post', operation: 'postListReactions' }),
 	{
 		displayName: 'Additional Fields',
-		name: 'additionalFieldsReactions',
+		name: 'additionalFields',
 		type: 'collection',
 		placeholder: 'Add Field',
 		default: {},
 		options: [
-			{
-				displayName: 'Account ID',
-				name: 'accountId',
-				type: 'string',
-				default: '',
-				description: 'ID of the account to get reactions from',
-				routing: { send: { type: 'query', property: 'account_id' } },
-			},
 			{
 				displayName: 'Comment ID',
 				name: 'commentId',
