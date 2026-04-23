@@ -4,7 +4,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeConnectionType } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 import { unipileOperations } from './UnipileOperations';
 import { unipileFields } from './UnipileFields';
 
@@ -20,8 +20,8 @@ export class Unipile implements INodeType {
 		defaults: {
 			name: 'Unipile',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'unipileApi',
