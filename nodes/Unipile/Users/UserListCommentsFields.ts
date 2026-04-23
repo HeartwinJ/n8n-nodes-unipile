@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const userListCommentsFields: INodeProperties[] = [
 	{
@@ -14,23 +15,10 @@ export const userListCommentsFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['user'],
-				operation: ['userListComments'],
-			},
-		},
-	},
+	accountIdField({ resource: 'user', operation: 'userListComments' }),
 	{
 		displayName: 'Additional Fields',
-		name: 'additionalFieldsReactions',
+		name: 'additionalFields',
 		type: 'collection',
 		placeholder: 'Add Field',
 		default: {},

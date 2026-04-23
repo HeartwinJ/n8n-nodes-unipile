@@ -14,11 +14,7 @@ export const unipileEmailOperations: INodeProperties[] = [
 				action: 'Create a draft',
 				description: 'POST /drafts',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/drafts',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/drafts' },
 				},
 			},
 			{
@@ -65,7 +61,19 @@ export const unipileEmailOperations: INodeProperties[] = [
 				value: 'emailList',
 				action: 'List all emails',
 				description: 'GET /emails',
-				routing: { request: { method: 'GET', url: '/api/v1/emails' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/emails' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 			{
 				name: 'List Folders',
@@ -80,11 +88,7 @@ export const unipileEmailOperations: INodeProperties[] = [
 				action: 'Send an email',
 				description: 'POST /emails',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/emails',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/emails' },
 				},
 			},
 			{

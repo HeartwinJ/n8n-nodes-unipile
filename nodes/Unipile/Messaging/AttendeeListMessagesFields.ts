@@ -23,7 +23,7 @@ export const attendeeListMessagesFields: INodeProperties[] = [
 		options: [
 			{
 				displayName: 'Account ID',
-				name: 'account_id',
+				name: 'accountId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_id' } },

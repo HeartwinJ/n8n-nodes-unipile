@@ -1,6 +1,8 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { returnAllFields } from '../shared/pagination';
 
 export const accountListFields: INodeProperties[] = [
+	...returnAllFields({ resource: 'account', operation: 'accountList' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -13,23 +15,15 @@ export const accountListFields: INodeProperties[] = [
 				name: 'cursor',
 				type: 'string',
 				default: '',
-				description: 'A cursor for pagination purposes',
+				description: 'A cursor for pagination purposes (ignored when Return All is enabled)',
 				routing: { send: { type: 'query', property: 'cursor' } },
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				description: 'Max number of results to return',
-				typeOptions: { minValue: 1 },
-				routing: { send: { type: 'query', property: 'limit' } },
 			},
 		],
 		displayOptions: {
 			show: {
 				resource: ['account'],
 				operation: ['accountList'],
+				returnAll: [false],
 			},
 		},
 	},

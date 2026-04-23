@@ -1,20 +1,8 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinGetSearchParametersListFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['linkedin'],
-				operation: ['linkedinGetSearchParametersList'],
-			},
-		},
-	},
+	accountIdField({ resource: 'linkedin', operation: 'linkedinGetSearchParametersList' }),
 	{
 		displayName: 'Type',
 		name: 'type',
@@ -48,9 +36,7 @@ export const linkedinGetSearchParametersListFields: INodeProperties[] = [
 				displayName: 'Limit',
 				name: 'limit',
 				type: 'number',
-				typeOptions: {
-					minValue: 1,
-				},
+				typeOptions: { minValue: 1 },
 				default: 50,
 				description: 'Max number of results to return',
 				routing: { send: { type: 'query', property: 'limit' } },

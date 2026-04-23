@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const linkedinPublishJobPostingFields: INodeProperties[] = [
 	{
@@ -14,6 +15,7 @@ export const linkedinPublishJobPostingFields: INodeProperties[] = [
 			},
 		},
 	},
+	accountIdField({ resource: 'linkedin', operation: 'linkedinPublishJobPosting' }),
 	{
 		displayName: 'Body (JSON)',
 		name: 'body',

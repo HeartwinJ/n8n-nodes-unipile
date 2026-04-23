@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const calendarDeleteEventFields: INodeProperties[] = [
 	{
@@ -27,18 +28,5 @@ export const calendarDeleteEventFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['calendar'],
-				operation: ['calendarDeleteEvent'],
-			},
-		},
-	},
+	accountIdField({ resource: 'calendar', operation: 'calendarDeleteEvent' }),
 ];

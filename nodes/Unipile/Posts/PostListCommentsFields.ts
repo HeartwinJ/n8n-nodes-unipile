@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const postListCommentsFields: INodeProperties[] = [
 	{
@@ -14,20 +15,7 @@ export const postListCommentsFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['post'],
-				operation: ['postListComments'],
-			},
-		},
-	},
+	accountIdField({ resource: 'post', operation: 'postListComments' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',

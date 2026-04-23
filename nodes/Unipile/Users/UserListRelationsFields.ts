@@ -1,23 +1,11 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const userListRelationsFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['user'],
-				operation: ['userListRelations'],
-			},
-		},
-	},
+	accountIdField({ resource: 'user', operation: 'userListRelations' }),
 	{
 		displayName: 'Additional Fields',
-		name: 'additionalFieldsReactions',
+		name: 'additionalFields',
 		type: 'collection',
 		placeholder: 'Add Field',
 		default: {},

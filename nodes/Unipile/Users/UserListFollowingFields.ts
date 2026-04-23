@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const userListFollowingFields: INodeProperties[] = [
 	{
@@ -15,23 +16,10 @@ export const userListFollowingFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['user'],
-				operation: ['userListFollowing'],
-			},
-		},
-	},
+	accountIdField({ resource: 'user', operation: 'userListFollowing' }),
 	{
 		displayName: 'Additional Fields',
-		name: 'additionalFieldsReactions',
+		name: 'additionalFields',
 		type: 'collection',
 		placeholder: 'Add Field',
 		default: {},

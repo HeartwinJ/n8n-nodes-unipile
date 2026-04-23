@@ -1,6 +1,8 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { returnAllFields } from '../shared/pagination';
 
 export const chatListFields: INodeProperties[] = [
+	...returnAllFields({ resource: 'messaging', operation: 'chatList' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -10,14 +12,14 @@ export const chatListFields: INodeProperties[] = [
 		options: [
 			{
 				displayName: 'Account ID',
-				name: 'account_id',
+				name: 'accountId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_id' } },
 			},
 			{
 				displayName: 'Account Type',
-				name: 'account_type',
+				name: 'accountType',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_type' } },
@@ -41,16 +43,8 @@ export const chatListFields: INodeProperties[] = [
 				name: 'cursor',
 				type: 'string',
 				default: '',
+				description: 'Ignored when Return All is enabled',
 				routing: { send: { type: 'query', property: 'cursor' } },
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				description: 'Max number of results to return',
-				typeOptions: { minValue: 1 },
-				routing: { send: { type: 'query', property: 'limit' } },
 			},
 			{
 				displayName: 'Unread',

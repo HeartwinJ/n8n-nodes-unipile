@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const postGetFields: INodeProperties[] = [
 	{
@@ -14,18 +15,5 @@ export const postGetFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['post'],
-				operation: ['postGet'],
-			},
-		},
-	},
+	accountIdField({ resource: 'post', operation: 'postGet' }),
 ];

@@ -123,14 +123,38 @@ export const unipileMessagingOperations: INodeProperties[] = [
 				value: 'chatList',
 				action: 'List all chats',
 				description: 'GET /chats',
-				routing: { request: { method: 'GET', url: '/api/v1/chats' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/chats' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 			{
 				name: 'List Messages',
 				value: 'messageList',
 				action: 'List all messages',
 				description: 'GET /messages',
-				routing: { request: { method: 'GET', url: '/api/v1/messages' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/messages' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 			{
 				name: 'Patch Chat',
@@ -150,7 +174,6 @@ export const unipileMessagingOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/chats/{{$parameter["chatId"]}}/messages',
-						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
@@ -160,11 +183,7 @@ export const unipileMessagingOperations: INodeProperties[] = [
 				action: 'Start a new chat',
 				description: 'POST /chats',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/chats',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/chats' },
 				},
 			},
 			{

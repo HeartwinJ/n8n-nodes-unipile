@@ -1,4 +1,6 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
+import { returnAllFields } from '../shared/pagination';
 
 export const calendarListEventsFields: INodeProperties[] = [
 	{
@@ -14,20 +16,8 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 		},
 	},
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['calendar'],
-				operation: ['calendarListEvents'],
-			},
-		},
-	},
+	accountIdField({ resource: 'calendar', operation: 'calendarListEvents' }),
+	...returnAllFields({ resource: 'calendar', operation: 'calendarListEvents' }),
 	{
 		displayName: 'Additional Filters',
 		name: 'additionalFields',
@@ -53,7 +43,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Cancelled',
-				name: 'is_cancelled',
+				name: 'isCancelled',
 				type: 'boolean',
 				default: false,
 				description: 'Whether to retrieve cancelled events',
@@ -64,7 +54,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 				name: 'cursor',
 				type: 'string',
 				default: '',
-				description: 'Pagination cursor',
+				description: 'Ignored when Return All is enabled',
 				routing: { send: { type: 'query', property: 'cursor' } },
 			},
 			{
@@ -85,7 +75,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Event Type',
-				name: 'event_type',
+				name: 'eventType',
 				type: 'string',
 				default: '',
 				description: 'Comma-separated list of event types',
@@ -93,7 +83,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Expand Recurring',
-				name: 'expand_recurring',
+				name: 'expandRecurring',
 				type: 'boolean',
 				default: false,
 				description: 'Whether to expand recurring events (single or occurrence)',
@@ -101,20 +91,11 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'iCal UID',
-				name: 'ical_uid',
+				name: 'icalUid',
 				type: 'string',
 				default: '',
 				description: 'Filter by iCal UID',
 				routing: { send: { type: 'query', property: 'ical_uid' } },
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				description: 'Max number of results to return',
-				typeOptions: { minValue: 1 },
-				routing: { send: { type: 'query', property: 'limit' } },
 			},
 			{
 				displayName: 'Location',
@@ -130,6 +111,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 				type: 'number',
 				default: 0,
 				description: 'Pagination offset',
+				typeOptions: { minValue: 0 },
 				routing: { send: { type: 'query', property: 'offset' } },
 			},
 			{
@@ -150,7 +132,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Updated After',
-				name: 'updated_after',
+				name: 'updatedAfter',
 				type: 'string',
 				default: '',
 				description: 'Filter events updated after this date',
@@ -158,7 +140,7 @@ export const calendarListEventsFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Updated Before',
-				name: 'updated_before',
+				name: 'updatedBefore',
 				type: 'string',
 				default: '',
 				description: 'Filter events updated before this date',

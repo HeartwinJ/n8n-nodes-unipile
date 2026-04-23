@@ -17,7 +17,6 @@ export const unipileCalendarOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/calendars/{{$parameter["calendarId"]}}/events',
-						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
@@ -72,7 +71,19 @@ export const unipileCalendarOperations: INodeProperties[] = [
 				value: 'calendarList',
 				action: 'List all calendars',
 				description: 'GET /calendars',
-				routing: { request: { method: 'GET', url: '/api/v1/calendars' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/calendars' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 			{
 				name: 'List Events',
@@ -83,6 +94,16 @@ export const unipileCalendarOperations: INodeProperties[] = [
 					request: {
 						method: 'GET',
 						url: '=/api/v1/calendars/{{$parameter["calendarId"]}}/events',
+					},
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
 					},
 				},
 			},

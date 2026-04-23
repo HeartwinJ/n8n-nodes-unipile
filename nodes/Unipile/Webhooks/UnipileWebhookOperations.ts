@@ -14,11 +14,7 @@ export const unipileWebhookOperations: INodeProperties[] = [
 				action: 'Create a webhook',
 				description: 'POST /webhooks',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/webhooks',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/webhooks' },
 				},
 			},
 			{
@@ -38,7 +34,19 @@ export const unipileWebhookOperations: INodeProperties[] = [
 				value: 'webhookList',
 				action: 'List all webhooks',
 				description: 'GET /webhooks',
-				routing: { request: { method: 'GET', url: '/api/v1/webhooks' } },
+				routing: {
+					request: { method: 'GET', url: '/api/v1/webhooks' },
+					send: { paginate: '={{ $parameter["returnAll"] }}' },
+					operations: {
+						pagination: {
+							type: 'generic',
+							properties: {
+								continue: '={{ !!$response.body?.cursor }}',
+								request: { qs: { cursor: '={{ $response.body?.cursor }}' } },
+							},
+						},
+					},
+				},
 			},
 		],
 		default: 'webhookList',

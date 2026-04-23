@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const emailGetFields: INodeProperties[] = [
 	{
@@ -14,6 +15,11 @@ export const emailGetFields: INodeProperties[] = [
 			},
 		},
 	},
+	accountIdField({
+		resource: 'email',
+		operation: 'emailGet',
+		required: false,
+	}),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -21,14 +27,6 @@ export const emailGetFields: INodeProperties[] = [
 		placeholder: 'Add Field',
 		default: {},
 		options: [
-			{
-				displayName: 'Account ID',
-				name: 'accountId',
-				type: 'string',
-				default: '',
-				description: 'The ID of the account (when using provider uid)',
-				routing: { send: { type: 'query', property: 'account_id' } },
-			},
 			{
 				displayName: 'Include Headers',
 				name: 'includeHeaders',

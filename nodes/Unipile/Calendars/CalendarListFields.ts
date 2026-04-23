@@ -1,21 +1,10 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
+import { returnAllFields } from '../shared/pagination';
 
 export const calendarListFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The ID of the account to use',
-		routing: { send: { type: 'query', property: 'account_id' } },
-		displayOptions: {
-			show: {
-				resource: ['calendar'],
-				operation: ['calendarList'],
-			},
-		},
-	},
+	accountIdField({ resource: 'calendar', operation: 'calendarList' }),
+	...returnAllFields({ resource: 'calendar', operation: 'calendarList' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -28,7 +17,7 @@ export const calendarListFields: INodeProperties[] = [
 				name: 'cursor',
 				type: 'string',
 				default: '',
-				description: 'A cursor used for pagination',
+				description: 'Ignored when Return All is enabled',
 				routing: { send: { type: 'query', property: 'cursor' } },
 			},
 			{
@@ -37,16 +26,8 @@ export const calendarListFields: INodeProperties[] = [
 				type: 'number',
 				default: 0,
 				description: 'Offset for pagination',
+				typeOptions: { minValue: 0 },
 				routing: { send: { type: 'query', property: 'offset' } },
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				description: 'Max number of results to return',
-				typeOptions: { minValue: 1 },
-				routing: { send: { type: 'query', property: 'limit' } },
 			},
 		],
 		displayOptions: {

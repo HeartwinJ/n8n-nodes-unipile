@@ -1,17 +1,6 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const accountRestartFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['account'],
-				operation: ['accountRestart'],
-			},
-		},
-	},
+	accountIdField({ resource: 'account', operation: 'accountRestart', sendMode: 'none' }),
 ];

@@ -14,11 +14,7 @@ export const unipilePostOperations: INodeProperties[] = [
 				action: 'Add a reaction to a post',
 				description: 'POST /posts/reaction',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/posts/reaction',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/posts/reaction' },
 				},
 			},
 			{
@@ -30,7 +26,6 @@ export const unipilePostOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/api/v1/posts/{{$parameter["postId"]}}/comments',
-						body: '={{ JSON.parse($parameter["body"]) }}',
 					},
 				},
 			},
@@ -40,11 +35,7 @@ export const unipilePostOperations: INodeProperties[] = [
 				action: 'Create a post',
 				description: 'POST /posts',
 				routing: {
-					request: {
-						method: 'POST',
-						url: '/api/v1/posts',
-						body: '={{ JSON.parse($parameter["body"]) }}',
-					},
+					request: { method: 'POST', url: '/api/v1/posts' },
 				},
 			},
 			{

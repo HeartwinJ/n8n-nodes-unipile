@@ -1,17 +1,6 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { accountIdField } from '../shared/AccountIdField';
 
 export const accountGetFields: INodeProperties[] = [
-	{
-		displayName: 'Account ID',
-		name: 'accountId',
-		type: 'string',
-		default: '',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['account'],
-				operation: ['accountGet'],
-			},
-		},
-	},
+	accountIdField({ resource: 'account', operation: 'accountGet', sendMode: 'none' }),
 ];

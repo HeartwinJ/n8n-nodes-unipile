@@ -1,6 +1,8 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { returnAllFields } from '../shared/pagination';
 
 export const messageListFields: INodeProperties[] = [
+	...returnAllFields({ resource: 'messaging', operation: 'messageList' }),
 	{
 		displayName: 'Additional Fields',
 		name: 'additionalFields',
@@ -10,7 +12,7 @@ export const messageListFields: INodeProperties[] = [
 		options: [
 			{
 				displayName: 'Account ID',
-				name: 'account_id',
+				name: 'accountId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'account_id' } },
@@ -34,21 +36,12 @@ export const messageListFields: INodeProperties[] = [
 				name: 'cursor',
 				type: 'string',
 				default: '',
-				description: 'A cursor used for pagination',
+				description: 'Ignored when Return All is enabled',
 				routing: { send: { type: 'query', property: 'cursor' } },
 			},
 			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				description: 'Max number of results to return',
-				typeOptions: { minValue: 1 },
-				routing: { send: { type: 'query', property: 'limit' } },
-			},
-			{
 				displayName: 'Sender ID',
-				name: 'sender_id',
+				name: 'senderId',
 				type: 'string',
 				default: '',
 				routing: { send: { type: 'query', property: 'sender_id' } },

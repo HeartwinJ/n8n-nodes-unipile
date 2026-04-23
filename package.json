@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-unipile",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "n8n community node for Unipile API",
 	"keywords": [
 		"n8n-community-node-package"
@@ -41,13 +41,13 @@
 		]
 	},
 	"devDependencies": {
-		"@typescript-eslint/parser": "~8.32.0",
+		"@typescript-eslint/parser": "~8.59.0",
 		"eslint": "^8.57.0",
-		"eslint-plugin-n8n-nodes-base": "^1.16.3",
+		"eslint-plugin-n8n-nodes-base": "~1.16.6",
 		"gulp": "^5.0.0",
 		"n8n-workflow": "*",
-		"prettier": "^3.5.3",
-		"typescript": "^5.8.2"
+		"prettier": "~3.8.3",
+		"typescript": "~5.9.3"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
